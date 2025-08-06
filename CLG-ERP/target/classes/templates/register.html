@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Register - College ERP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Tailwind CSS CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+	<!-- LottieFiles Player -->
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: linear-gradient(135deg, #dae2f8, #d6a4a4);
+			min-height: 100vh;
+			font-family: 'Inter', sans-serif;
+		}
+
+		.fade-in {
+			animation: fadeIn 1s ease-in-out;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.glass {
+			background: rgba(255, 255, 255, 0.5);
+			backdrop-filter: blur(12px);
+			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			border-radius: 20px;
+		}
+	</style>
+</head>
+
+<body class="overflow-hidden">
+
+	<!-- 🔵 Navbar (Centered Title) -->
+	<nav class="bg-white shadow fixed w-full z-20 top-0 left-0">
+		<div class="flex justify-center items-center h-16 px-6">
+			<span class="text-xl font-bold text-blue-700">College Management System (ERP)</span>
+		</div>
+	</nav>
+
+	<!-- ✅ Register Card -->
+	<div class="flex items-center justify-center min-h-screen pt-24 fade-in">
+		<div class="w-full max-w-5xl glass grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+			<!-- Left: Lottie Animation -->
+			<div class="flex items-center justify-center bg-blue-100 p-10">
+				<lottie-player src="https://assets7.lottiefiles.com/packages/lf20_u8o7BL.json" background="transparent"
+					speed="1" style="width: 300px; height: 300px;" loop autoplay>
+				</lottie-player>
+			</div>
+
+			<!-- Right: Register Form -->
+			<div class="p-10">
+				<h2 class="text-3xl md:text-4xl font-bold text-blue-700 text-center mb-8">Create Account</h2>
+
+				<form action="/saveUser" method="POST" class="space-y-6">
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+						<!-- First Name -->
+						<!-- First Name -->
+						<div>
+							<label class="block text-sm font-medium text-gray-700">First Name</label>
+							<input type="text" name="firstName" required pattern="^[A-Za-z\s]{2,50}$"
+								title="Only letters and spaces allowed. Length: 2-50 characters."
+								class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+						</div>
+
+						<!-- Middle Name (Optional) -->
+						<div>
+							<label class="block text-sm font-medium text-gray-700">Middle Name</label>
+							<input type="text" name="middleName" pattern="^[A-Za-z\s]{0,50}$"
+								title="Only letters and spaces allowed. Max 50 characters."
+								class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+						</div>
+
+						<!-- Last Name -->
+						<div>
+							<label class="block text-sm font-medium text-gray-700">Last Name</label>
+							<input type="text" name="lastName" required pattern="^[A-Za-z\s]{2,50}$"
+								title="Only letters and spaces allowed. Length: 2-50 characters."
+								class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+						</div>
+
+						<!-- Email -->
+						<div>
+							<label class="block text-sm font-medium text-gray-700">Email</label>
+							<input type="email" name="email" required title="Enter a valid email address"
+								class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+						</div>
+
+						<!-- Password -->
+						<div class="md:col-span-2">
+							<label class="block text-sm font-medium text-gray-700">Password</label>
+							<input type="password" name="password" required
+								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
+								title="Password must be at least 8 characters long, and include uppercase, lowercase, number, and special character."
+								class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500">
+						</div>
+					</div>
+
+					<!-- Submit Button -->
+					<div class="pt-2 text-center">
+						<button type="submit"
+							class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 text-lg rounded-lg shadow-md transition duration-300">
+							Register
+						</button>
+					</div>
+
+					<!-- Link to Login -->
+					<div class="text-center text-sm text-gray-700 mt-5">
+						Already have an account?
+						<a href="/login" class="text-blue-700 hover:underline font-medium">Login here</a>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

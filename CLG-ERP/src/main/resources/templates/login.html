@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Login | College ERP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Tailwind CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+	<!-- LottieFiles -->
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+	<style>
+		* {
+			font-family: 'Inter', sans-serif;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			background: linear-gradient(135deg, #dae2f8, #d6a4a4);
+			min-height: 100vh;
+		}
+
+		video.bg-video {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			object-fit: cover;
+			z-index: -10;
+		}
+
+		.glass {
+			background: rgba(255, 255, 255, 0.5);
+			backdrop-filter: blur(12px);
+			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			border-radius: 20px;
+		}
+
+		.fade-in {
+			animation: fadeIn 1s ease-in-out;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+
+<body class="font-sans relative overflow-hidden">
+
+	<!-- 🌊 Background Video -->
+	<video autoplay muted loop class="bg-video">
+		<source src="https://cdn.coverr.co/videos/coverr-ocean-waves-crashing-on-a-rocky-shore-2096/1080p.mp4"
+			type="video/mp4">
+		Your browser does not support the video tag.
+	</video>
+
+	<!-- 🔵 Navbar -->
+	<nav class="bg-white shadow fixed w-full z-20 top-0 left-0">
+		<div class="flex justify-center items-center h-16 px-6">
+			<span class="text-xl font-bold text-blue-700">College Management System (ERP)</span>
+		</div>
+	</nav>
+
+	<!-- ✅ Login Card -->
+	<div class="flex items-center justify-center min-h-screen pt-24 fade-in">
+		<div class="w-full max-w-4xl glass grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+			<!-- Left: Lottie Animation -->
+			<div class="flex items-center justify-center bg-blue-100 p-10">
+				<lottie-player src="https://assets2.lottiefiles.com/packages/lf20_zpmyrmhw.json"
+					background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay>
+				</lottie-player>
+			</div>
+
+			<!-- Right: Login Form -->
+			<div class="p-10">
+				<h2 class="text-4xl font-bold text-blue-700 text-center mb-8">🔐 Login</h2>
+
+				<form th:action="@{/login}" method="post" th:object="${login}" class="space-y-6">
+
+					<!-- Error Message -->
+					<div th:if="${error}" class="text-red-600 bg-red-100 p-3 rounded text-center text-sm"
+						th:text="${error}"></div>
+
+					<!-- Email -->
+					<div>
+						<label class="block text-base font-medium text-gray-700">Email</label>
+						<input type="email" th:field="*{email}" required placeholder="Enter your email"
+							class="w-full border border-gray-300 rounded-lg px-5 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+					</div>
+
+					<!-- Password -->
+					<div>
+						<label class="block text-base font-medium text-gray-700">Password</label>
+						<input type="password" th:field="*{password}" required placeholder="Enter your password"
+							class="w-full border border-gray-300 rounded-lg px-5 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+					</div>
+
+					<!-- Role -->
+					<div>
+						<label class="block text-base font-medium text-gray-700">Login As</label>
+						<select th:field="*{role}" required
+							class="w-full border border-gray-300 rounded-lg px-5 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+							<option value="" disabled selected>Select your role</option>
+							<option value="STUDENT">🎓 Student</option>
+							<option value="ADMIN">🛠️ Admin</option>
+							<option value="AUTHORITY">🏛️ College Authority</option>
+						</select>
+					</div>
+
+					<!-- Submit Button -->
+					<div class="text-center">
+						<button type="submit"
+							class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 text-lg rounded-lg shadow-md transition duration-300">
+							Login
+						</button>
+					</div>
+
+					<!-- Footer Link -->
+					<div class="text-center text-sm text-gray-700">
+						Don't have an account?
+						<a href="/register" class="text-blue-700 hover:underline font-medium">Register here</a>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
